@@ -1,16 +1,10 @@
 import React from 'react';
 import Card from './Card';
-import STORE from '../Store';
 import './List.css';
 
 function List(props) {
-  console.log(props.cards);
   const cards = props.cards.map((card, i) => (
-    <Card
-      key={i}
-      title={STORE.allCards[card].title}
-      content={STORE.allCards[card].content}
-    ></Card>
+    <Card key={card.id} title={card.title} content={card.content}></Card>
   ));
   return (
     <section className='List'>

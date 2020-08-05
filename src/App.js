@@ -2,9 +2,13 @@ import React from 'react';
 import './App.css';
 import List from './components/List';
 
-function App(props) {
+function App(props = {}) {
   const list = props.store.lists.map((obj, i) => (
-    <List key={i} header={obj.header} cards={obj.cardIds} />
+    <List
+      key={i}
+      header={obj.header}
+      cards={obj.cardIds.map((id) => props.store.allCards[id])}
+    />
   ));
   return (
     <main className='App'>
