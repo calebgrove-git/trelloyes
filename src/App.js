@@ -8,7 +8,6 @@ App.defaultProps = {
   },
 };
 function App(props) {
-  console.log('rendered');
   const initStore = props.store;
   const [lastClicked, setlastClicked] = useState('');
   const [store, setStore] = useState({
@@ -30,7 +29,7 @@ function App(props) {
       content: 'lorem ipsum',
     };
     initStore.lists[event].cardIds.push(id);
-    setlastClicked(event);
+    setlastClicked(id);
   }
   function handleDelete(event) {
     delete initStore.allCards[event];
