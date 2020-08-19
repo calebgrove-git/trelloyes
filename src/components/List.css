@@ -2,6 +2,8 @@
 
 .List {
   min-width: 218px;
+  margin-left: 8px;
+  margin-bottom: 8px;
 }
 
 .List:not(:first-of-type) {

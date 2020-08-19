@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import List from './components/List';
+import AddCard from './components/AddCard';
 App.defaultProps = {
   store: {
     allCards: {},
@@ -20,6 +21,7 @@ function App(props) {
   }, [lastClicked]);
 
   function newRandomCard(event) {
+    console.log(event);
     const id =
       Math.random().toString(36).substring(2, 4) +
       Math.random().toString(36).substring(2, 4);
@@ -29,6 +31,18 @@ function App(props) {
       content: 'lorem ipsum',
     };
     initStore.lists[event].cardIds.push(id);
+    setlastClicked(id);
+  }
+  function newCardForm(list, title, content) {
+    const id =
+      Math.random().toString(36).substring(2, 4) +
+      Math.random().toString(36).substring(2, 4);
+    initStore.allCards[id] = {
+      id,
+      title: title,
+      content: content,
+    };
+    initStore.lists[list].cardIds.push(id);
     setlastClicked(id);
   }
   function handleDelete(event) {
@@ -58,7 +72,10 @@ function App(props) {
       <header className='App-header'>
         <h1>Trelloyes!</h1>
       </header>
-      <div className='App-list'>{list()}</div>
+      <div className='App-list'>
+        {list()}
+        <AddCard newCard={newCardForm} />
+      </div>
     </main>
   );
 }
